@@ -1,0 +1,9 @@
+llama-index
+llama-index-vector-stores-lancedb
+llama-index-embeddings-huggingface
+lancedb
+python-dotenv
+llama-index-postprocessor-cohere-rerank
+mcp
+requests
+beautifulsoup4

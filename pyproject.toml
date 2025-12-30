@@ -1,0 +1,31 @@
+[project]
+name = "docs-forai"
+version = "0.1.0"
+description = "Docs-ForAI: Open-source RAG context for AI Agent development. Eliminating LLM hallucinations by providing real-time, verified documentation indexing for the AI Agent ecosystem (LangChain, CrewAI, AutoGen, and more)."
+dependencies = [
+    "llama-index",
+    "llama-index-vector-stores-lancedb",
+    "llama-index-embeddings-huggingface",
+    "lancedb",
+    "python-dotenv",
+    "llama-index-postprocessor-cohere-rerank",
+    "mcp",
+    "requests",
+    "beautifulsoup4",
+    "huggingface_hub",
+]
+requires-python = ">=3.10"
+
+[project.scripts]
+ingest = "ingest_docs:main"
+serve = "mcp_server:main"
+config = "get_config:get_mcp_config"
+setup = "download_data:main"
+
+[tool.setuptools]
+py-modules = ["ingest_docs", "mcp_server", "get_config", "scraper", "download_data"]
+package-dir = {"" = "src"}
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
