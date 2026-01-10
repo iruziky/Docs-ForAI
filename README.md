@@ -36,9 +36,9 @@ To test the current version, follow these steps:
    cd Docs-ForAI
    ```
 
-2. **Switch to the MVP branch:**
+2. **Merge with to the MVP branch:**
    ```bash
-   git checkout feat/mvp-local-index
+   git merge feat/mvp-local-index --allow-unrelated-histories
    ```
 
 3. **Setup the environment:**
