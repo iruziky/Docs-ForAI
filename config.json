@@ -1,82 +1,10 @@
 [
     {
-        "id": "langchain",
-        "name": "LangChain Docs",
-        "base_url": "https://docs.langchain.com",
-        "output_folder": "docs_langchain",
-        "collection_name": "langchain_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca LangChain."
-    },
-    {
-        "id": "pydantic_ai",
-        "name": "Pydantic AI Docs",
-        "base_url": "https://ai.pydantic.dev/",
-        "output_folder": "docs_pydantic_ai",
-        "collection_name": "pydantic_ai_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca Pydantic AI."
-    },
-    {
-        "id": "autogen",
-        "name": "AutoGen Docs",
-        "base_url": "https://microsoft.github.io/autogen/0.2/docs",
-        "output_folder": "docs_autogen",
-        "collection_name": "autogen_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca AutoGen."
-    },
-    {
-        "id": "llamaindex",
-        "name": "LlamaIndex Docs",
-        "base_url": "https://developers.llamaindex.ai/python",
-        "output_folder": "docs_llamaindex",
-        "collection_name": "llamaindex_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca LlamaIndex."
-    },
-    {
-        "id": "phidata",
-        "name": "Phidata Docs",
-        "base_url": "https://docs.phidata.com",
-        "output_folder": "docs_phidata",
-        "collection_name": "phidata_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca Phidata."
-    },
-    {
-        "id": "haystack",
-        "name": "Haystack Docs",
-        "base_url": "https://docs.haystack.deepset.ai",
-        "output_folder": "docs_haystack",
-        "collection_name": "haystack_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca Haystack."
-    },
-    {
-        "id": "praison",
-        "name": "Praison Docs",
-        "base_url": "https://docs.praison.ai",
-        "output_folder": "docs_praison",
-        "collection_name": "praison_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca Praison."
-    },
-    {
-        "id": "litellm",
-        "name": "LiteLLM Docs",
-        "base_url": "https://docs.litellm.ai",
-        "output_folder": "docs_litellm",
-        "collection_name": "litellm_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca LiteLLM."
-    },
-    {
-        "id": "crewai",
-        "name": "CrewAI Docs",
-        "base_url": "https://docs.crewai.com/",
-        "output_folder": "docs_crewai",
-        "collection_name": "crewai_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca CrewAI."
-    },
-    {
-        "id": "swarm",
-        "name": "Swarm Docs",
-        "base_url": "https://github.com/openai/swarm/blob/main/README.md",
-        "output_folder": "docs_swarm",
-        "collection_name": "swarm_docs",
-        "description": "Use esta ferramenta para dúvidas sobre a biblioteca Swarm."
+        "id": "generic_example",
+        "name": "Example",
+        "base_url": "https://example.com/docs",
+        "output_folder": "docs_example",
+        "collection_name": "example_docs",
+        "description": "Use esta ferramenta para dúvidas gerais."
     }
 ]
