@@ -1,19 +1,12 @@
 import os
 import json
 import logging
-from typing import Optional
+from typing import Optional, Any
 from dotenv import load_dotenv
 
 from mcp.server.fastmcp import FastMCP
-from llama_index.core import (
-    VectorStoreIndex,
-    StorageContext,
-    Settings,
-    QueryBundle
-)
-from llama_index.vector_stores.lancedb import LanceDBVectorStore
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.postprocessor.cohere_rerank import CohereRerank
+
+# Lazy imports will be done inside functions to speed up startup time.
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mcp_server")
@@ -24,12 +17,17 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 
 mcp = FastMCP("Multi-Source Documentation Bot")
 
-_embed_model: Optional[HuggingFaceEmbedding] = None
-_reranker: Optional[CohereRerank] = None
+_embed_model = None
+_reranker = None
 
 def get_resources():
     global _embed_model, _reranker
     
+    # Lazy imports to avoid heavy load at startup
+    from llama_index.core import Settings
+    from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+    from llama_index.postprocessor.cohere_rerank import CohereRerank
+
     lancedb_uri = os.path.join(PROJECT_ROOT, "lancedb_data")
 
     if _embed_model is None:
@@ -51,6 +49,10 @@ def get_resources():
 def _search_lancedb(query: str, collection_name: str) -> str:
     """Vector search in LanceDB for a specific collection."""
     try:
+        # Lazy imports for search functionality
+        from llama_index.core import VectorStoreIndex, StorageContext, QueryBundle
+        from llama_index.vector_stores.lancedb import LanceDBVectorStore
+        
         lancedb_uri, _, reranker = get_resources()
         
         vector_store = LanceDBVectorStore(uri=lancedb_uri, table_name=collection_name)
