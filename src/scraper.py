@@ -63,7 +63,7 @@ def extract_content(soup):
 
     return content_root.get_text(separator='\n\n', strip=True)
 
-def scrape(base_url, output_dir, make_subdir=True):
+def scrape(base_url, output_dir, make_subdir=True, start_url=None):
     """Perform recursive scraping of a base URL."""
     if make_subdir:
         parsed_base = urlparse(base_url)
@@ -75,7 +75,7 @@ def scrape(base_url, output_dir, make_subdir=True):
     if not os.path.exists(final_output_dir):
         os.makedirs(final_output_dir)
         
-    queue = [clean_url(base_url)]
+    queue = [clean_url(start_url or base_url)]
     visited = set()
     total_downloaded = 0
     
@@ -91,6 +91,14 @@ def scrape(base_url, output_dir, make_subdir=True):
         try:
             print(f"Processing: {current_url}")
             response = requests.get(current_url, timeout=10)
+            
+            # Handle redirects: use the final URL for resolving links
+            final_url = clean_url(response.url)
+            if final_url != current_url:
+                print(f"Redirected to: {final_url}")
+                if final_url not in visited:
+                    visited.add(final_url)
+
             if response.status_code != 200:
                 print(f"Error {response.status_code} accessing {current_url}")
                 visited.add(current_url)
@@ -112,12 +120,14 @@ def scrape(base_url, output_dir, make_subdir=True):
             filepath = os.path.join(final_output_dir, filename)
             
             with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(f"URL: {current_url}\n\n")
+                f.write(f"URL: {current_url}\n")
+                f.write(f"Final URL: {final_url}\n\n")
                 f.write(text_content)
                 
             for a_tag in soup.find_all('a', href=True):
                 href = a_tag['href']
-                full_link = urljoin(current_url, href)
+                # Use final_url (response.url) to resolve relative links correctly
+                full_link = urljoin(final_url, href)
                 cleaned_link = clean_url(full_link)
                 
                 if (cleaned_link.startswith(base_url) and 
@@ -135,8 +145,9 @@ def scrape(base_url, output_dir, make_subdir=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Recursive Documentation Scraper")
     parser.add_argument("url", help="Base URL to start scraping")
+    parser.add_argument("--start-url", help="URL to start scraping from (if different from base)")
     parser.add_argument("--output", default="docs_input", help="Output directory")
     
     args = parser.parse_args()
     
-    scrape(args.url, args.output)
+    scrape(args.url, args.output, start_url=args.start_url)

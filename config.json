@@ -1,10 +1,19 @@
 [
     {
-        "id": "generic_example",
-        "name": "Example",
-        "base_url": "https://example.com/docs",
-        "output_folder": "docs_example",
-        "collection_name": "example_docs",
-        "description": "Use esta ferramenta para dúvidas gerais."
+        "id": "openrouter",
+        "name": "OpenRouter Docs",
+        "base_url": "https://openrouter.ai/docs",
+        "output_folder": "docs_openrouter",
+        "collection_name": "openrouter_docs",
+        "description": "Use esta ferramenta para dúvidas sobre a biblioteca OpenRouter."
+    },
+    {
+        "id": "promptfoo",
+        "name": "PromptFoo Docs",
+        "base_url": "https://www.promptfoo.dev/docs/",
+        "start_url": "https://www.promptfoo.dev/docs/intro/",
+        "output_folder": "docs_promptfoo",
+        "collection_name": "promptfoo_docs",
+        "description": "Use esta ferramenta para dúvidas sobre a biblioteca PromptFoo."
     }
 ]

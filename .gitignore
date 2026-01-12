@@ -2,21 +2,19 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.egg-info/
-venv/
 .venv/
-.env
+build/
+dist/
+*.egg-info/
 
-# Project specific
-ingestion_cache.json
+# Project Specific
 docs_input/
 lancedb_data/
+ingestion_cache.json
+.env
+test_docs*/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
-
-# OS
-.DS_Store
-Thumbs.db
-.gitattributes
+.agent/

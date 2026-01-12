@@ -71,6 +71,7 @@ def process_target(config: dict, base_docs_dir: str = "docs_input") -> bool:
     target_id = config.get("id")
     name = config.get("name")
     base_url = config.get("base_url")
+    start_url = config.get("start_url")
     output_folder = config.get("output_folder")
     collection_name = config.get("collection_name")
     
@@ -81,7 +82,7 @@ def process_target(config: dict, base_docs_dir: str = "docs_input") -> bool:
     # 1. SCRAPING
     logger.info(f"Starting Scraping of {base_url} to {target_dir}...")
     try:
-        scrape(base_url, target_dir, make_subdir=False)
+        scrape(base_url, target_dir, make_subdir=False, start_url=start_url)
     except Exception as e:
         logger.error(f"Failed to scrape {name}: {e}")
     
