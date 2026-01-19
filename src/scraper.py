@@ -75,11 +75,27 @@ def scrape(base_url, output_dir, make_subdir=True, start_url=None):
     if not os.path.exists(final_output_dir):
         os.makedirs(final_output_dir)
         
-    queue = [clean_url(start_url or base_url)]
+    initial_url = clean_url(base_url)
+    queue = [initial_url]
+    
+    if start_url:
+        # If start_url is an absolute URL, use it directly.
+        # If it's just a slug (like 'getting-started'), join it with base_url.
+        if start_url.startswith(('http://', 'https://')):
+            start_page = clean_url(start_url)
+        else:
+            base_dir = initial_url if initial_url.endswith('/') else initial_url + '/'
+            start_page = clean_url(urljoin(base_dir, start_url))
+        
+        if start_page not in queue:
+            queue.append(start_page)
+            print(f"Added specific start URL: {start_page}")
+
     visited = set()
     total_downloaded = 0
     
     print(f"Starting scraper at: {base_url}")
+    print(f"URLs in queue: {len(queue)}")
     print(f"Saving to: {final_output_dir}")
     
     while queue:
