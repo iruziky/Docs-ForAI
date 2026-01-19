@@ -36,15 +36,19 @@ To test the current version, follow these steps:
    cd Docs-ForAI
    ```
 
-2. **Merge with to the MVP branch:**
+2. **Go to the MVP branch:**
    ```bash
-   git merge feat/mvp-local-index --allow-unrelated-histories
+   git checkout feat/mvp-local-index
    ```
 
 3. **Setup the environment:**
    Using [uv](https://github.com/astral-sh/uv) (recommended):
    ```bash
-   pip install uv
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   source $HOME/.local/bin/env
+   source $HOME/.local/bin/envecho 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   
    uv venv
    uv pip install -e .
    ```
